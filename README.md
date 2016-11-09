@@ -13,10 +13,14 @@ A ideia é utilizar nesse workflow:
 Estrutura de pastas:
 
 ```
-dist
-  |_ (arquivos gerados pela task ``gulp deploy`` ou pela ``gulp-watch``)
+dist (arquivos gerados pela task ``gulp deploy`` ou pela ``gulp-watch``)
+  |_css
+  |_img
+  |_js
 src
   |_scss
   |_img
   |_js
+    |_plugins
+    |_vendors
 ```
