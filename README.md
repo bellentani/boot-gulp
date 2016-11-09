@@ -3,7 +3,7 @@
 Esse workflow é um trabalho para simplificar o que utilizo com a equipe com quem trabalho, já feito com Grunt + Sass + Compass - por utilizar Sass + Compass ele precisa rodar o Ruby, o que cria uma camada a mais desnecessária para o cotidiano.
 
 A ideia é utilizar nesse workflow:
-* Geração de CSS minificado através com mixins (``gulp-sass``, ``node-bourbon``, ``gulp-sourcemaps``);
+* Geração de CSS minificado através com mixins, substituindo o Sass+Compass (``gulp-sass``, ``node-bourbon``, ``gulp-sourcemaps``);
 * Gerar htmls através de includes com template engine (Handlebars);
 * Levantar um servidor básico usando express
 * Fazer reload automático quando uma página for alterada (live preview)
