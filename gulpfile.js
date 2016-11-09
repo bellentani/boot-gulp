@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
+var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('hello', function() {
   // Stuff here
@@ -8,10 +9,12 @@ gulp.task('hello', function() {
 
 gulp.task('sass', function(){
   return gulp.src('src/scss/**/*.scss')
+    .pipe(sourcemaps.init())
     .pipe(sass({
       outputStyle: 'compressed',
-      sourceMap: true,
-    })) // Using gulp-sass
+      includePaths: require('node-bourbon').with('src/scss/')
+    }).on('error', sass.logError)) // Using gulp-sass
+    .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('dist/css'))
 });
 
