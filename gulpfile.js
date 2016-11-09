@@ -39,7 +39,10 @@ gulp.task('handlebars', function() {
     // partials : {
     //   footer : '<footer>the end</footer>'
     // },
-    batch: ['src/templates/partials'],
+    batch: [
+      'src/templates/partials/',
+      'src/templates/partials/molecules/'
+    ],
     helpers : helper
   }
 
