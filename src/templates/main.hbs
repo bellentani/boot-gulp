@@ -1,22 +1,28 @@
 <!DOCTYPE html>
-    <head>
-        <title>Front-End Dev Conference</title>
-    </head>
-    <body>
-        <h1>{{username.1.fullName}}</h1>
-        <p>{{username.1.bio}}</p>
-        <p>
-            You can find me on <a href="http://www.twitter.com/{{username.1.twitterUsername}}">Twitter</a>,
-            <a href="http://www.github.com/{{1.githubUsername}}">GitHub</a> or my <a href="http://{{username.1.website}}">Website</a>.
-        </p>
+  <head>
+    <title>Front-End Dev Conference</title>
+  </head>
+  <body>
+    {{#> header}}
+      {{!-- Hero content goes here. --}}
+    {{/header}}
+    <h1>{{username.1.fullName}}</h1>
+    <p>{{username.1.bio}}</p>
+    <p>
+      You can find me on <a href="http://www.twitter.com/{{username.1.twitterUsername}}">Twitter</a>,
+      <a href="http://www.github.com/{{1.githubUsername}}">GitHub</a> or my <a href="http://{{username.1.website}}">Website</a>.
+    </p>
 
-        {{#if usernameMaroto}}
-        <ul>
-          {{#each username}}
-            <li>Nome: {{fullName}}</li>
-          {{/each}}
-        </ul>
-        {{/if}}
+    {{#if usernameMaroto}}
+    <ul>
+      {{#each username}}
+        <li>Nome: {{fullName}}</li>
+      {{/each}}
+    </ul>
+    {{/if}}
 
-    </body>
+    {{#> footer}}
+      {{!-- Hero content goes here. --}}
+    {{/footer}}
+  </body>
 </html>

@@ -32,10 +32,14 @@ gulp.task('autoprefixer', function () {
 });
 
 gulp.task('handlebars', function() {
-  var content = require('./src/templates/data/main.json');;
+  var content = require('./src/templates/data/main.json');
+  var options = {
+    ignorePartials: true,
+    batch: ['src/templates/partials']
+  }
 
   return gulp.src('src/templates/**/*.hbs')
-    .pipe(handlebars(content))
+    .pipe(handlebars(content, options))
     .pipe(rename({extname: '.html'}))
     .pipe(gulp.dest('dist'));
 });
