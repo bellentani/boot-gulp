@@ -5,10 +5,11 @@ Esse workflow é um trabalho para simplificar o que utilizo com a equipe com que
 A ideia é utilizar nesse workflow:
 * Geração de CSS minificado através com mixins, substituindo o Sass+Compass (``gulp-sass``, ``node-bourbon``, ``gulp-sourcemaps``);
 * Gerar htmls através de includes com template engine (Handlebars), porém, o resultado final deverá ser estático;
-* Levantar um servidor básico usando express
+* Levantar um servidor básico usando Express
 * Fazer reload automático quando uma página for alterada (live preview)
-* Minificar Javascript
+* Testar, corrigir e minificar Javascript de Frontend
 * Instalar libraries utilizando Bower ou similar
+* Deixar apenas como pré-requisito o Node.js, Express.js e o Gulp.js, o resto serão módulos
 
 Estrutura de pastas:
 
