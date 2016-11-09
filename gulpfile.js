@@ -33,9 +33,14 @@ gulp.task('autoprefixer', function () {
 
 gulp.task('handlebars', function() {
   var content = require('./src/templates/data/main.json');
+  var helper = require('./src/templates/helpers/main-helper.js');
   var options = {
-    ignorePartials: true,
-    batch: ['src/templates/partials']
+    //ignorePartials: true,
+    // partials : {
+    //   footer : '<footer>the end</footer>'
+    // },
+    batch: ['src/templates/partials'],
+    helpers : helper
   }
 
   return gulp.src('src/templates/**/*.hbs')
