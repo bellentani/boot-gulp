@@ -15,12 +15,18 @@ Estrutura de pastas:
 ```
 dist (arquivos gerados pela task ``gulp deploy`` ou pela ``gulp-watch``)
   |_css
-  |_img
-  |_js
-src
-  |_scss
+    |_ ...
   |_img
   |_js
     |_plugins
     |_vendors
+    |_ ...
+src
+  |_scss
+    |_ ...
+  |_img
+  |_js
+    |_plugins
+    |_vendors
+    |_ ...
 ```
