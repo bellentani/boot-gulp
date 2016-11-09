@@ -12,9 +12,11 @@ A ideia é utilizar nesse workflow:
 
 Estrutura de pastas:
 
+```
 dist
   |_ (arquivos gerados pela task ``gulp deploy`` ou pela ``gulp-watch``)
 src
   |_scss
   |_img
   |_js
+```
