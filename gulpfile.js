@@ -3,7 +3,8 @@ var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var handlebars = require('gulp-compile-handlebars');
 var rename = require('gulp-rename');
-
+// tentar usando o glob http://stackoverflow.com/questions/22149966/iterating-over-directories-with-gulp
+// ou https://github.com/fshost/node-dir
 
 gulp.task('sass', function(){
   return gulp.src('src/scss/**/*.scss')
@@ -32,6 +33,11 @@ gulp.task('autoprefixer', function () {
 });
 
 gulp.task('handlebars', function() {
+  var path = require('path');
+  var partialsList = './src/templates/partials'+path;
+  var dirName = path.dirname(partialsList);
+  console.log(dirName);
+
   var content = require('./src/templates/data/main.json');
   var helper = require('./src/templates/helpers/main-helper.js');
   var options = {
