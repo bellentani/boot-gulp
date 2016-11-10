@@ -13,6 +13,8 @@ A ideia é utilizar nesse workflow:
 
 ##Instalação
 
+Ao clonar o projeto você irá precisar realizar os dois itens abaixo.
+
 Baixe o projeto e dê:
 
 ``npm install``
@@ -29,7 +31,7 @@ As tarefas estão em fase inicial, mas já dá pra utilizá-las para desenvolvim
 
 ``gulp sass``
 
-Os arquivos são salvos na pasta ´´dist/css´´. 
+Os arquivos são salvos na pasta ´´dist/css´´.
 
 ###Gera HTMLs utilizando o Handlebars.js
 
@@ -43,7 +45,17 @@ Os arquivos são salvos na pasta ´´dist´´.
 
 ``gulp watch``
 
+Essa é a tarefa principal, ela ficará rodando enquanto não for interrompida e processa todos os arquivos editados na pasta ``src``.
+
 A tarefa vigia os arquivos da tarefa ``gulp-sass``, ``gulp-handlebars`` e ``gulp-fonts``. Toda vez que tem alteração em arquivos presentes nestas tasks (.hbs, .scss, .sass, etc) nas pastas específicas de cada uma ele executa as respectivas tasks.
+
+Depois de fazer qualquer modificação ela carrega um servidor e abre em seu navegador padrão o arquivo ``dist/main.html``. Isso acontece na porta 8080. Se quiser ver outros arquivos basta colocar a URL sempre partindo do diretório ``src``.
+
+**Exemplos:**
+
+``localhost:8080/seuarquivo.html``
+``localhost:8080/umdiretorio/seuarquivo.html``
+
 
 ##Estrutura de pastas
 
