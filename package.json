@@ -35,6 +35,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^2.2.0",
-    "node-bourbon": "^4.2.8"
+    "node-bourbon": "^4.2.8",
+    "node-dir": "^0.1.16"
   }
 }
