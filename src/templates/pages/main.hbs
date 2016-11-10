@@ -5,25 +5,25 @@
   </head>
   <body>
     {{> header}}
+    <main class="main">
+      <h1>{{username.1.fullName}}</h1>
+      <p>{{username.1.bio}}</p>
+      <p>
+        You can find me on <a href="http://www.twitter.com/{{username.1.twitterUsername}}">Twitter</a>,
+        <a href="http://www.github.com/{{1.githubUsername}}">GitHub</a> or my <a href="http://{{username.1.website}}">Website</a>.
+      </p>
 
-    <h1>{{username.1.fullName}}</h1>
-    <p>{{username.1.bio}}</p>
-    <p>
-      You can find me on <a href="http://www.twitter.com/{{username.1.twitterUsername}}">Twitter</a>,
-      <a href="http://www.github.com/{{1.githubUsername}}">GitHub</a> or my <a href="http://{{username.1.website}}">Website</a>.
-    </p>
+      {{> jumbotron}}
 
-    {{> jumbotron}}
-
-    {{#if username}}
-    <h2>Lista de nomes</h2>
-    <ul>
-      {{#each username}}
-        <li>Nome: {{fullName}}</li>
-      {{/each}}
-    </ul>
-    {{/if}}
-
+      {{#if username}}
+      <h2>Lista de nomes</h2>
+      <ul>
+        {{#each username}}
+          <li>Nome: {{fullName}}</li>
+        {{/each}}
+      </ul>
+      {{/if}}
+    </main>
     {{> footer}}
 
   </body>

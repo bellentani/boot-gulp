@@ -11,8 +11,10 @@ var del = require('del');
 gulp.task('browserSync', function() {
   browserSync.init({
     server: {
-      baseDir: 'dist'
+      baseDir: 'dist',
     },
+    port: 8080,
+    startPath: 'main.html',
   })
 });
 
