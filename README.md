@@ -38,13 +38,13 @@ src
       |_molecules
 ```
 ##Lista de items para serem feitos
-* -Aplicar Sass com gulp e gulp-sass-
-* -Adicionar library (bourbon)-
-* -Gerar maps para os css e minificar na saída-
-* -Aplicar o Handlebars-
-  * -Configurar partials e a listagem automática de diretórios-
-  * -Colocar no diretório de pages para a estrutura de páginas gerais-
-* -Adicionar task ``watch`` e inserir Sass e Handlebars-
+* ~~Aplicar Sass com gulp e gulp-sass~~
+* ~~Adicionar library (bourbon)~~
+* ~~Gerar maps para os css e minificar na saída~~
+* ~~Aplicar o Handlebars~~
+  * ~~Configurar partials e a listagem automática de diretórios~~
+  * ~~Colocar no diretório de pages para a estrutura de páginas gerais~~
+* ~~Adicionar task ``watch`` e inserir Sass e Handlebars~~
 * Tasks a serem feitas:
   * Copy para fontes, imagens, vídeos, etc
   * Para minificação de Javascript
