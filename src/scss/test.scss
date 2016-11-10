@@ -3,7 +3,9 @@
 
 body {
   width: 900px;
-  margin: 0 auto; 
+  margin: 0 auto;
+  background-color: black;
+  color: white;
 }
 .main {
   color: red;
@@ -25,4 +27,7 @@ body {
 section {
   color: blue;
   font-size: golden-ratio(14px,  1);
+}
+.jumbotron {
+  color: white;
 }

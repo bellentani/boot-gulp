@@ -6,14 +6,14 @@
   <body>
     {{> header}}
     <main class="main">
-      <h1>{{username.1.fullName}}</h1>
-      <p>{{username.1.bio}}</p>
+      <h1>{{username.0.fullName}}</h1>
+      <p>{{username.0.bio}}</p>
       <p>
-        You can find me on <a href="http://www.twitter.com/{{username.1.twitterUsername}}">Twitter</a>,
-        <a href="http://www.github.com/{{1.githubUsername}}">GitHub</a> or my <a href="http://{{username.1.website}}">Website</a>.
+        You can find me on <a href="http://www.twitter.com/{{username.0.twitterUsername}}">Twitter</a>,
+        <a href="http://www.github.com/{{username.0.githubUsername}}">GitHub</a> or my <a href="http://{{username.1.website}}">Website</a>.
       </p>
 
-      {{> jumbotron}}
+      {{> jumbotron world='Marte'}}
 
       {{#if username}}
       <h2>Lista de nomes</h2>
