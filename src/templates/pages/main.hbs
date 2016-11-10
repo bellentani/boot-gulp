@@ -13,16 +13,9 @@
         <a href="http://www.github.com/{{username.0.githubUsername}}">GitHub</a> or my <a href="http://{{username.1.website}}">Website</a>.
       </p>
 
-      {{> jumbotron world='Marte'}}
+      {{> jumbotron world='Terra'}}
 
-      {{#if username}}
-      <h2>Lista de nomes</h2>
-      <ul>
-        {{#each username}}
-          <li>Nome: {{fullName}}</li>
-        {{/each}}
-      </ul>
-      {{/if}}
+      {{> user-loop }}
     </main>
     {{> footer}}
 

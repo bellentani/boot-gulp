@@ -11,6 +11,32 @@ A ideia é utilizar nesse workflow:
 * Instalar libraries utilizando Bower ou similar
 * Deixar apenas como pré-requisito o Node.js, Express.js e o Gulp.js, o resto serão módulos
 
+##Instalação
+
+Baixe o projeto e dê:
+
+``npm install``
+
+Caso não tenha o Gulp instalado:
+
+``npm install gulp -g``
+
+##Tarefas cadastradas
+
+As tarefas estão em fase inicial, mas já dá pra utilizá-las para desenvolvimento.
+
+###Converte Sass com Bourbon
+
+``gulp sass``
+
+###Gera HTMLs utilizando o Handlebars.js
+
+``gulp handlebars``
+
+###Vigia modificações nos arquivos
+
+``gulp watch``
+
 ##Estrutura de pastas
 
 ```
