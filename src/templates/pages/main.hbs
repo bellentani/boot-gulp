@@ -1,6 +1,7 @@
 <!DOCTYPE html>
   <head>
     <title>Front-End Dev Conference</title>
+    <link rel="stylesheet" type="text/css" href="css/test.css">
   </head>
   <body>
     {{> header}}
@@ -15,6 +16,7 @@
     {{> jumbotron}}
 
     {{#if username}}
+    <h2>Lista de nomes</h2>
     <ul>
       {{#each username}}
         <li>Nome: {{fullName}}</li>

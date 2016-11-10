@@ -1,11 +1,15 @@
 @import "bourbon";
 @import "project/inc";
 
+body {
+  width: 900px;
+  margin: 0 auto; 
+}
 .main {
   color: red;
 
   div {
-    background: black;
+    background: red;
   }
   p {
     font-weight: bold;

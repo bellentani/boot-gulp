@@ -1,14 +1,14 @@
 { "username":
   [
     {
-      "fullName": "James Burns",
+      "fullName": "Poe Bellentani",
       "bio": "Hey i'm James and i'm a front-end dev currently working in Manchester.",
       "twitterUsername": "@jburns",
       "githubUsername": "jburns",
       "website": "www.jburns.co.uk"
     },
     {
-      "fullName": "Jasmine Hodgson",
+      "fullName": "Gui Fernandes",
       "bio": "Hey! I'm Jasmine and I love SASS!",
       "twitterUsername": "@jazziehodgson_93",
       "githubUsername": "jazziehodgson_93",

@@ -46,5 +46,17 @@ src
   * ~~Colocar no diretório de pages para a estrutura de páginas gerais~~
 * ~~Adicionar task ``watch`` e inserir Sass e Handlebars~~
 * Tasks a serem feitas:
-  * Copy para fontes, imagens, vídeos, etc
+  * Copy para:
+    * ~~fontes~~,
+    * imagens,
+    * vídeos, etc
   * Para minificação de Javascript
+  * Apagar itens automaticamente quando removidos ou alterados no src
+  * Optimizar imagens
+  * Colocar includes e bundle de javascripts
+* Instalar o browser-sync
+  * ~~Para html~~
+  * ~~Para scss~~
+  * Para imagens
+  * Para Javascript
+  * Para fontes
