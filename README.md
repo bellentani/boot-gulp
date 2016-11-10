@@ -53,8 +53,10 @@ Depois de fazer qualquer modificação ela carrega um servidor e abre em seu nav
 
 **Exemplos:**
 
-```localhost:8080/seuarquivo.html
-localhost:8080/umdiretorio/seuarquivo.html```
+```
+localhost:8080/seuarquivo.html
+localhost:8080/umdiretorio/seuarquivo.html
+```
 
 
 ##Estrutura de pastas
