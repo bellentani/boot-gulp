@@ -11,7 +11,7 @@ A ideia é utilizar nesse workflow:
 * Instalar libraries utilizando Bower ou similar
 * Deixar apenas como pré-requisito o Node.js, Express.js e o Gulp.js, o resto serão módulos
 
-Estrutura de pastas:
+##Estrutura de pastas
 
 ```
 dist (arquivos gerados pela task ``gulp deploy`` ou pela ``gulp-watch``)
@@ -30,4 +30,21 @@ src
     |_plugins
     |_vendors
     |_ ...
+  |_templates
+    |_data
+    |_helpers
+    |_pages
+    |_partials
+      |_molecules
 ```
+##Lista de items para serem feitos
+* -Aplicar Sass com gulp e gulp-sass-
+* -Adicionar library (bourbon)-
+* -Gerar maps para os css e minificar na saída-
+* -Aplicar o Handlebars-
+  * -Configurar partials e a listagem automática de diretórios-
+  * -Colocar no diretório de pages para a estrutura de páginas gerais-
+* -Adicionar task ``watch`` e inserir Sass e Handlebars-
+* Tasks a serem feitas:
+  * Copy para fontes, imagens, vídeos, etc
+  * Para minificação de Javascript
