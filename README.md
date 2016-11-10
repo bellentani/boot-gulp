@@ -29,13 +29,21 @@ As tarefas estão em fase inicial, mas já dá pra utilizá-las para desenvolvim
 
 ``gulp sass``
 
+Os arquivos são salvos na pasta ´´dist/css´´. 
+
 ###Gera HTMLs utilizando o Handlebars.js
 
 ``gulp handlebars``
 
+Ela gera os arquivos html que estão na pasta ``src/templates/pages``, mas pode usar os arquivos na pasta ``src/templates/partials`` para compor sua estrutura como *partiais* do *Handlebars.js*.
+
+Os arquivos são salvos na pasta ´´dist´´.
+
 ###Vigia modificações nos arquivos
 
 ``gulp watch``
+
+A tarefa vigia os arquivos da tarefa ``gulp-sass``, ``gulp-handlebars`` e ``gulp-fonts``. Toda vez que tem alteração em arquivos presentes nestas tasks (.hbs, .scss, .sass, etc) nas pastas específicas de cada uma ele executa as respectivas tasks.
 
 ##Estrutura de pastas
 
