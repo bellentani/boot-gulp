@@ -49,7 +49,17 @@ gulp.task('sass', function(){
 gulp.task('fonts', function() {
   return gulp.src(['src/fonts/**/*', '!src/fonts/**/*.+(html|css)'])
   .pipe(gulp.dest('dist/fonts'))
-})
+});
+
+gulp.task('images', function() {
+  return gulp.src(['src/**/*.{png,jpg,gif,svg}'])
+  .pipe(gulp.dest('dist/'))
+});
+
+gulp.task('js', function() {
+  return gulp.src(['src/**/*.js', '!src/templates/**/*.*'])
+  .pipe(gulp.dest('dist/'))
+});
 
 gulp.task('handlebars', function() {
   //var path = require('path');

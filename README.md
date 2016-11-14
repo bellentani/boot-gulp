@@ -39,7 +39,7 @@ Os arquivos são salvos na pasta ´´dist/css´´.
 
 Ela gera os arquivos html que estão na pasta ``src/templates/pages``, mas pode usar os arquivos na pasta ``src/templates/partials`` para compor sua estrutura como *partiais* do *Handlebars.js*.
 
-Os arquivos são salvos na pasta ´´dist´´.
+Os arquivos são salvos na pasta ``dist``.
 
 ###Vigia modificações nos arquivos
 
@@ -96,8 +96,8 @@ src
 * Tasks a serem feitas:
   * Copy para:
     * ~~fontes~~,
-    * imagens,
-    * vídeos, etc
+    * ~~imagens~~,
+    * ~~Javascripts~~
   * Para minificação de Javascript
   * Apagar itens automaticamente quando removidos ou alterados no src
   * Optimizar imagens
