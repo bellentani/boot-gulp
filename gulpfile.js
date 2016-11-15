@@ -16,6 +16,7 @@ runSequence = require('run-sequence');
 var srcPath = 'src/';
 var distPath = 'dist/';
 
+require('gulp-stats')(gulp);
 
 gulp.task('browserSync', function() {
   browserSync.init({
