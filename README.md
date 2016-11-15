@@ -93,8 +93,8 @@ src
   * ~~Configurar partials e a listagem automática de diretórios~~
   * ~~Colocar no diretório de pages para a estrutura de páginas gerais~~
 * ~~Adicionar task ``watch`` e inserir Sass e Handlebars~~
-* Tasks a serem feitas:
-  * Copy para:
+* ~~Tasks a serem feitas~~:
+  * ~~Copy para~~:
     * ~~fontes~~,
     * ~~imagens~~,
     * ~~Javascripts~~
@@ -102,7 +102,7 @@ src
   * ~~Apagar itens automaticamente quando removidos ou alterados no src~~
   * ~~Optimizar imagens~~
   * ~~Colocar includes e bundle de javascripts~~
-* Instalar o browser-sync
+* ~~Instalar o browser-sync~~
   * ~~Para html~~
   * ~~Para scss~~
   * ~~Para imagens~~
