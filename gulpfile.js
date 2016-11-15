@@ -6,12 +6,21 @@ var rename = require('gulp-rename');
 var dir = require('node-dir');
 var browserSync = require('browser-sync').create();
 var del = require('del');
+var useref = require('gulp-useref');
+var uglify = require('gulp-uglify');
+var gulpIf = require('gulp-if');
+var cssnano = require('gulp-cssnano');
+var imagemin = require('gulp-imagemin');
+var runSequence = require('run-sequence');
+
+var srcPath = 'src';
+var distPath = 'dist';
 
 
 gulp.task('browserSync', function() {
   browserSync.init({
     server: {
-      baseDir: 'dist',
+      baseDir: distPath,
     },
     port: 8080,
     startPath: 'main.html',
@@ -19,14 +28,14 @@ gulp.task('browserSync', function() {
 });
 
 gulp.task('sass', function(){
-  return gulp.src('src/scss/**/*.+(scss|sass)')
+  return gulp.src(srcPath+'/scss/**/*.+(scss|sass)')
     .pipe(sourcemaps.init())
     .pipe(sass({
       outputStyle: 'compressed',
       includePaths: require('node-bourbon').with('src/scss/')
     }).on('error', sass.logError)) // Using gulp-sass
     .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('dist/css'))
+    .pipe(gulp.dest(distPath+'/css'))
     .pipe(browserSync.reload({
       stream: true
     }));
@@ -36,35 +45,63 @@ gulp.task('sass', function(){
 //   var postcss      = require('gulp-postcss');
 //   var autoprefixer = require('autoprefixer');
 //
-//   return gulp.src('dist/css/**/*.css')
+//   return gulp.src(distPath+'css/**/*.css')
 //     .pipe(sourcemaps.init())
 //     .pipe(postcss([ autoprefixer({
 //       browsers: ['last 5 versions'],
 //       cascade: false
 //     }) ]))
 //     //.pipe(sourcemaps.write('.'))
-//     .pipe(gulp.dest('dist/css/'));
+//     .pipe(gulp.dest(distPath+'css/'));
 // });
 
 gulp.task('fonts', function() {
-  return gulp.src(['src/fonts/**/*', '!src/fonts/**/*.+(html|css)'])
-  .pipe(gulp.dest('dist/fonts'))
+  return gulp.src([
+    srcPath+'/fonts/**/*',
+    '!'+srcPath+'/fonts/**/*.+(html|css)'
+  ])
+  .pipe(gulp.dest(distPath+'/fonts'))
 });
 
 gulp.task('images', function() {
-  return gulp.src(['src/**/*.{png,jpg,gif,svg}'])
-  .pipe(gulp.dest('dist/'))
+  return gulp.src([
+    srcPath+'/**/*.{png,jpg,gif,svg}',
+    '!'+srcPath+'/fonts/**/*.*'
+  ])
+  .pipe(gulp.dest(distPath))
+});
+
+gulp.task('images:opt', function() {
+  return gulp.src([
+    distPath+'/**/*.{png,jpg,gif,svg}',
+    '!'+srcPath+'/src/fonts/**/*.*'
+  ])
+  .pipe(imagemin())
+  .pipe(gulp.dest(distPath))
 });
 
 gulp.task('js', function() {
-  return gulp.src(['src/**/*.js', '!src/templates/**/*.*'])
-  .pipe(gulp.dest('dist/'))
+  return gulp.src([
+    srcPath+'/**/*.js',
+    '!'+srcPath+'/templates/**/*.*'
+  ])
+  .pipe(gulp.dest(distPath))
 });
 
-gulp.task('handlebars', function() {
+gulp.task('useref', function(){
+  return gulp.src(distPath+'/**/*.html')
+    .pipe(useref())
+    .pipe(gulpIf('*.js', uglify()))
+    .pipe(gulpIf('*.css', cssnano()))
+    .pipe(gulp.dest(distPath))
+});
+
+
+
+gulp.task('hbs', function() {
   //var path = require('path');
   //var partialsList = './src/templates/partials'+path;
-  var partialsDir = './src/templates/partials';
+  var partialsDir = srcPath+'/templates/partials';
   //var dirName = path.dirname(partialsList);
   //console.log(dirName);
 
@@ -74,10 +111,10 @@ gulp.task('handlebars', function() {
     } else {
       //console.log(subdirs);
       var batchList = subdirs;
-      batchList.push('src/templates/partials/');
+      batchList.push('./'+srcPath+'/templates/partials/');
 
-      var content = require('./src/templates/data/main.json');
-      var helper = require('./src/templates/helpers/main-helper.js');
+      var content = require('./'+srcPath+'/templates/data/main.json');
+      var helper = require('./'+srcPath+'/templates/helpers/main-helper.js');
       var options = {
         //ignorePartials: true,
         // partials : {
@@ -88,12 +125,12 @@ gulp.task('handlebars', function() {
       }
       console.log(batchList);
       return gulp.src([
-          'src/templates/pages/**/*.hbs',
-          //'!src/templates/**/*.hbs',
+          srcPath+'/templates/pages/**/*.hbs',
+          //'!'+srcPath+'/templates/**/*.hbs',
         ])
         .pipe(handlebars(content, options))
         .pipe(rename({extname: '.html'}))
-        .pipe(gulp.dest('dist'))
+        .pipe(gulp.dest(distPath))
         .pipe(browserSync.reload({
           stream: true
         }))
@@ -102,16 +139,56 @@ gulp.task('handlebars', function() {
 });
 
 gulp.task('clean:dist', function() {
-  return del.sync('dist');
+  console.log('deleta');
+  return del.sync(distPath);
 })
 
-//gulp.task('default', ['handlebars']);
-
-gulp.task('watch', ['clean:dist', 'browserSync', 'sass', 'handlebars'], function(){
-  gulp.watch(['src/templates/**/*.hbs', 'src/templates/data/**/*.*'], ['handlebars']);
-  gulp.watch('src/scss/**/*.scss', ['sass']);
-  gulp.watch(['src/fonts/**/*', '!src/fonts/**/*.+(html|css)'], ['fonts']);
-  gulp.watch('dist/*.html', browserSync.reload);
-  gulp.watch('dist/js/**/*.js', browserSync.reload);
-  gulp.watch(['src/fonts/**/*', '!src/fonts/**/*.+(html|css)'], browserSync.reload);
+gulp.task('watch', ['browserSync'], function(callback){
+  runSequence('clean:dist',
+    ['sass', 'js', 'hbs', 'useref', 'images', 'fonts'],
+    callback
+  );
+  gulp.watch([
+    srcPath+'/templates/**/*.hbs',
+    srcPath+'/templates/data/**/*.*'
+  ], ['hbs']);
+  gulp.watch(srcPath+'/scss/**/*.+(scss|sass)', ['sass']);
+  gulp.watch([
+    srcPath+'/fonts/**/*',
+    '!'+srcPath+'/fonts/**/*.+(html|css)'
+  ], ['fonts']);
+  gulp.watch([
+    srcPath+'/**/*.js',
+    '!'+srcPath+'/templates/**/*.*'
+  ], ['js']);
+  gulp.watch([
+    srcPath+'/**/*.{png,jpg,gif,svg}',
+    '!'+srcPath+'/fonts/**/*.*'
+  ], ['images']);
+  gulp.watch([
+    srcPath+'/fonts/**/*',
+    distPath+'/js/**/*.js',
+    distPath+'/*.[html|css]',
+    '!'+srcPath+'/fonts/**/*.+(html|css)'
+  ], browserSync.reload);
 })
+
+gulp.task('build', function (callback) {
+  runSequence('clean:dist',
+    ['sass', 'js', 'hbs', 'images', 'fonts'],
+    callback
+  )
+});
+
+gulp.task('build:min', function (callback) {
+  runSequence('clean:dist',
+    ['sass', 'js', 'hbs', 'useref', 'images', 'images:opt', 'fonts'],
+    callback
+  )
+});
+
+gulp.task('default', function (callback) {
+  runSequence(['build', 'browserSync', 'watch'],
+    callback
+  )
+});
