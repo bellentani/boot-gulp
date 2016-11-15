@@ -13,8 +13,8 @@ cssnano = require('gulp-cssnano'),
 imagemin = require('gulp-imagemin'),
 runSequence = require('run-sequence');
 
-var srcPath = 'src';
-var distPath = 'dist';
+var srcPath = 'src/';
+var distPath = 'dist/';
 
 
 gulp.task('browserSync', function() {
@@ -28,14 +28,14 @@ gulp.task('browserSync', function() {
 });
 
 gulp.task('sass', function(){
-  return gulp.src(srcPath+'/scss/**/*.+(scss|sass)')
+  return gulp.src(srcPath+'scss/**/*.+(scss|sass)')
     .pipe(sourcemaps.init())
     .pipe(sass({
       outputStyle: 'compressed',
       includePaths: require('node-bourbon').with('src/scss/')
     }).on('error', sass.logError)) // Using gulp-sass
     .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest(distPath+'/css'))
+    .pipe(gulp.dest(distPath+'css'))
     .pipe(browserSync.reload({
       stream: true
     }));
@@ -57,24 +57,24 @@ gulp.task('sass', function(){
 
 gulp.task('fonts', function() {
   return gulp.src([
-    srcPath+'/fonts/**/*',
-    '!'+srcPath+'/fonts/**/*.+(html|css)'
+    srcPath+'fonts/**/*',
+    '!'+srcPath+'fonts/**/*.+(html|css)'
   ])
-  .pipe(gulp.dest(distPath+'/fonts'))
+  .pipe(gulp.dest(distPath+'fonts'))
 });
 
 gulp.task('images', function() {
   return gulp.src([
-    srcPath+'/**/*.{png,jpg,gif,svg}',
-    '!'+srcPath+'/fonts/**/*.*'
+    srcPath+'**/*.{png,jpg,gif,svg}',
+    '!'+srcPath+'fonts/**/*.*'
   ])
   .pipe(gulp.dest(distPath))
 });
 
 gulp.task('images:opt', function() {
   return gulp.src([
-    distPath+'/**/*.{png,jpg,gif,svg}',
-    '!'+srcPath+'/src/fonts/**/*.*'
+    distPath+'**/*.{png,jpg,gif,svg}',
+    '!'+srcPath+'fonts/**/*.*'
   ])
   .pipe(imagemin())
   .pipe(gulp.dest(distPath))
@@ -82,14 +82,14 @@ gulp.task('images:opt', function() {
 
 gulp.task('js', function() {
   return gulp.src([
-    srcPath+'/**/*.js',
-    '!'+srcPath+'/templates/**/*.*'
+    srcPath+'**/*.js',
+    '!'+srcPath+'templates/**/*.*'
   ])
   .pipe(gulp.dest(distPath))
 });
 
 gulp.task('useref', function(){
-  return gulp.src(distPath+'/**/*.html')
+  return gulp.src(distPath+'**/*.html')
     .pipe(useref())
     .pipe(gulpIf('*.js', uglify()))
     .pipe(gulpIf('*.css', cssnano()))
@@ -100,8 +100,8 @@ gulp.task('useref', function(){
 
 gulp.task('hbs', function() {
   //var path = require('path');
-  //var partialsList = './src/templates/partials'+path;
-  var partialsDir = srcPath+'/templates/partials';
+  //var partialsList = './'+srcPath+'templates/partials'+path;
+  var partialsDir = srcPath+'templates/partials';
   //var dirName = path.dirname(partialsList);
   //console.log(dirName);
 
@@ -111,10 +111,10 @@ gulp.task('hbs', function() {
     } else {
       //console.log(subdirs);
       var batchList = subdirs;
-      batchList.push('./'+srcPath+'/templates/partials/');
+      batchList.push('./'+srcPath+'templates/partials/');
 
-      var content = require('./'+srcPath+'/templates/data/main.json');
-      var helper = require('./'+srcPath+'/templates/helpers/main-helper.js');
+      var content = require('./'+srcPath+'templates/data/main.json');
+      var helper = require('./'+srcPath+'templates/helpers/main-helper.js');
       var options = {
         //ignorePartials: true,
         // partials : {
@@ -125,8 +125,8 @@ gulp.task('hbs', function() {
       }
       console.log(batchList);
       return gulp.src([
-          srcPath+'/templates/pages/**/*.hbs',
-          //'!'+srcPath+'/templates/**/*.hbs',
+          srcPath+'templates/pages/**/*.hbs',
+          //'!'+srcPath+'templates/**/*.hbs',
         ])
         .pipe(handlebars(content, options))
         .pipe(rename({extname: '.html'}))
@@ -149,27 +149,27 @@ gulp.task('watch', ['browserSync'], function(callback){
     callback
   );
   gulp.watch([
-    srcPath+'/templates/**/*.hbs',
-    srcPath+'/templates/data/**/*.*'
+    srcPath+'templates/**/*.hbs',
+    srcPath+'templates/data/**/*.*'
   ], ['hbs']);
-  gulp.watch(srcPath+'/scss/**/*.+(scss|sass)', ['sass']);
+  gulp.watch(srcPath+'scss/**/*.+(scss|sass)', ['sass']);
   gulp.watch([
-    srcPath+'/fonts/**/*',
-    '!'+srcPath+'/fonts/**/*.+(html|css)'
+    srcPath+'fonts/**/*',
+    '!'+srcPath+'fonts/**/*.+(html|css)'
   ], ['fonts']);
   gulp.watch([
-    srcPath+'/**/*.js',
-    '!'+srcPath+'/templates/**/*.*'
+    srcPath+'**/*.js',
+    '!'+srcPath+'templates/**/*.*'
   ], ['js']);
   gulp.watch([
-    srcPath+'/**/*.{png,jpg,gif,svg}',
-    '!'+srcPath+'/fonts/**/*.*'
+    srcPath+'**/*.{png,jpg,gif,svg}',
+    '!'+srcPath+'fonts/**/*.*'
   ], ['images']);
   gulp.watch([
-    srcPath+'/fonts/**/*',
-    distPath+'/js/**/*.js',
-    distPath+'/*.[html|css]',
-    '!'+srcPath+'/fonts/**/*.+(html|css)'
+    srcPath+'fonts/**/*',
+    distPath+'js/**/*.js',
+    distPath+'*.[html|css]',
+    '!'+srcPath+'fonts/**/*.+(html|css)'
   ], browserSync.reload);
 })
 

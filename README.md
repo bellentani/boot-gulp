@@ -35,7 +35,7 @@ Os arquivos são salvos na pasta ´´dist/css´´.
 
 ###Gera HTMLs utilizando o Handlebars.js
 
-``gulp handlebars``
+``gulp hbs``
 
 Ela gera os arquivos html que estão na pasta ``src/templates/pages``, mas pode usar os arquivos na pasta ``src/templates/partials`` para compor sua estrutura como *partiais* do *Handlebars.js*.
 
@@ -58,6 +58,26 @@ localhost:8080/seuarquivo.html
 localhost:8080/umdiretorio/seuarquivo.html
 ```
 
+##Outras tasks
+``gulp browserSync``
+
+``gulp fonts``
+
+``gulp images``
+
+``gulp images:opt``
+
+``gulp js``
+
+``gulp useref``
+
+``gulp clean:dist``
+
+``gulp build``
+
+``gulp build:min``
+
+``gulp default``
 
 ##Estrutura de pastas
 
