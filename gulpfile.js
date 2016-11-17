@@ -30,11 +30,11 @@ gulp.task('browserSync', function() {
 });
 
 gulp.task('sass', function(){
-  return gulp.src(srcPath+'scss/**/*.+(scss|sass)')
+  return gulp.src(srcPath+'sass/**/*.+(scss|sass)')
     .pipe(sourcemaps.init())
     .pipe(sass({
       outputStyle: 'compressed',
-      includePaths: require('node-bourbon').with(distPath+'scss/')
+      includePaths: require('node-bourbon').with(distPath+'sass/')
     }).on('error', sass.logError)) // Using gulp-sass
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(distPath+'css'))
@@ -44,10 +44,10 @@ gulp.task('sass', function(){
 });
 
 gulp.task('compass', function() {
-  gulp.src(srcPath+'scss/**/*.+(scss|sass)')
+  gulp.src(srcPath+'sass/**/*.+(scss|sass)')
     .pipe(compass({
       css: distPath+'css/',
-      sass: srcPath+'scss/',
+      sass: srcPath+'sass/',
       style: 'compressed',
       sourcemap: true
     }))
@@ -182,7 +182,7 @@ gulp.task('watch', ['browserSync'], function(callback){
     srcPath+'templates/**/*.hbs',
     srcPath+'templates/data/**/*.*'
   ], ['hbs']);
-  gulp.watch(srcPath+'scss/**/*.+(scss|sass)', ['sass']);
+  gulp.watch(srcPath+'sass/**/*.+(scss|sass)', ['sass']);
   gulp.watch([
     srcPath+'fonts/**/*',
     '!'+srcPath+'fonts/**/*.+(html|css)'
@@ -226,7 +226,7 @@ gulp.task('watch-compass', ['browserSync'], function(callback){
     srcPath+'templates/**/*.hbs',
     srcPath+'templates/data/**/*.*'
   ], ['hbs']);
-  gulp.watch(srcPath+'scss/**/*.+(scss|sass)', ['compass']);
+  gulp.watch(srcPath+'sass/**/*.+(scss|sass)', ['compass']);
   gulp.watch([
     srcPath+'fonts/**/*',
     '!'+srcPath+'fonts/**/*.+(html|css)'
