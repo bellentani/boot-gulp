@@ -33,7 +33,7 @@ gulp.task('sass', function(){
     .pipe(sourcemaps.init())
     .pipe(sass({
       outputStyle: 'compressed',
-      includePaths: require('node-bourbon').with('src/scss/')
+      includePaths: require('node-bourbon').with(distPath+'scss/')
     }).on('error', sass.logError)) // Using gulp-sass
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(distPath+'css'))
@@ -146,7 +146,7 @@ gulp.task('clean:dist', function() {
 
 gulp.task('watch', ['browserSync'], function(callback){
   runSequence('clean:dist',
-    ['sass', 'js', 'hbs', 'useref', 'images', 'fonts'],
+    ['sass', 'js', 'hbs', 'images', 'fonts'],
     callback
   );
   gulp.watch([
