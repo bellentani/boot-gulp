@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
 sass = require('gulp-sass'),
 compass = require('gulp-compass'),
+neat = require('node-neat').includePaths,
 sourcemaps = require('gulp-sourcemaps'),
 handlebars = require('gulp-compile-handlebars'),
 rename = require('gulp-rename'),
@@ -14,7 +15,8 @@ cssnano = require('gulp-cssnano'),
 imagemin = require('gulp-imagemin'),
 runSequence = require('run-sequence'),
 mainBowerFiles = require('main-bower-files'),
-bower = require('gulp-bower');
+bower = require('gulp-bower'),
+regexRename = require('gulp-regex-rename');
 
 var config = {
   srcPath: 'src/',
@@ -39,7 +41,7 @@ gulp.task('sass', function(){
     .pipe(sourcemaps.init())
     .pipe(sass({
       outputStyle: 'compressed',
-      includePaths: require('node-bourbon').with(config.distPath+'sass/')
+      includePaths: require('node-bourbon').with(config.distPath+'sass/').concat(neat)
     }).on('error', sass.logError)) // Using gulp-sass
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(config.distPath+'css'))
@@ -251,7 +253,9 @@ gulp.task('build-compass:min', function (callback) {
   )
 });
 
-//Controles do Bower
+/*/------------------//
+   Controles do Bower
+/-------------------/*/
 gulp.task('bowerInit', function() {
   return bower()
 });
@@ -302,22 +306,40 @@ gulp.task('bittersRefillsScss', function() {
   //bitters
   gulp.src([config.srcPath+'components/bitters/core/*.scss'])
   .pipe(gulp.dest(config.srcPath+'sass/project/bitters'));
-  console.log('bitters')
+  //console.log('bitters')
 });
 
-// gulp.task('refillsHbs', function() {
-//   //refills
-//   gulp.src([
-//     config.srcPath+'components/refills/images/**/*.*',
-//     config.srcPath+'components/refills/source/stylesheets/**/*.css'
-//   ])
-//   .pipe(gulp.dest(config.srcPath+'sass/project/img/refills'));
-// });
+gulp.task('refillsHbs', function() {
+  //refills
+  gulp.src([
+    config.srcPath+'components/refills/source/**/*.html.erb'
+  ])
+  .pipe(regexRename(/\.html\.erb$/, '.hbs'))
+  .pipe(rename({prefix: 'ref'}))
+  .pipe(gulp.dest(config.srcPath+'templates/partials/reffils'));
 
+  //images
+  gulp.src([
+    config.srcPath+'components/refills/source/images/**/*.*'
+  ])
+  .pipe(gulp.dest(config.srcPath+'images/'));
+
+  //svg
+  gulp.src([
+    config.srcPath+'components/refills/source/svgs/**/*.*'
+  ])
+  .pipe(gulp.dest(config.srcPath+'svgs/'));
+
+  //javascripts
+  gulp.src([
+    config.srcPath+'components/refills/source/javascripts/**/*.*'
+  ])
+  .pipe(gulp.dest(config.srcPath+'js/'));
+});
 
 gulp.task('bowerBuild', function (callback) {
   runSequence('clean:dist',
-    ['bowerInit', 'jsVendors', 'jsPlugins', 'scssPlugins', 'bittersRefillsScss'],
+    ['bowerInit', 'jsVendors', 'jsPlugins', 'scssPlugins', 'bittersRefillsScss', 'refillsHbs'],
     callback
   )
 });
