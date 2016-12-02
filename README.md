@@ -15,9 +15,13 @@ A ideia é utilizar nesse workflow:
 
 ##Pré-requisito
 
-Caso não tenha o Gulp instalado:
+Caso não tenha o Gulp instalado globalmente:
 
 ``npm install gulp -g``
+
+Também é preciso instalar o Bower globalmente:
+
+``npm install bower -g``
 
 ##Instalação
 
