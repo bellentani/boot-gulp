@@ -1,16 +1,14 @@
 #Workflow para frontend usando Gulp
 
-Esse workflow é simplifica um que já utilizo no cotidiano e é feito com Grunt + Sass + Compass. Por utilizar o Compass ele precisa rodar o Ruby, o que cria uma camada a mais desnecessária para o cotidiano.
-
 A ideia é utilizar nesse workflow:
 
-* Geração de CSS minificado através com mixins, substituindo o Sass+Compass (``gulp-sass``, ``node-bourbon``, ``gulp-sourcemaps``);
+* Geração de CSS minificado através com mixins usando o Sass+Compass (``gulp-compass``);
 * Gerar htmls através de includes com template engine (Handlebars), porém, o resultado final deverá ser estático;
 * Levantar um servidor básico usando Express
 * Fazer reload automático quando uma página for alterada (live preview)
 * Testar, corrigir e minificar Javascript de Frontend
-* Instalar bibliotecas e recursos utilizando Bower ou similar
-* Deixar apenas como pré-requisito o Node.js, Express.js e o Gulp.js, o resto serão módulos dos mesmos
+* Instalar bibliotecas e recursos utilizando Bower
+* Deixar apenas como pré-requisito o Node.js, Express.js e o Gulp.js (tentar utilizar no futuro o Bourbon, que ainda não está funcional com seu grid integral como framework)
 
 
 ##Pré-requisito
@@ -36,9 +34,9 @@ Baixe o projeto e dê:
 
 As tarefas estão em fase inicial, mas já dá pra utilizá-las para desenvolvimento.
 
-###Converte Sass com Bourbon
+###Converte Sass com Compass
 
-``gulp sass``
+``gulp compass``
 
 Os arquivos são salvos na pasta ´´dist/css´´.
 
