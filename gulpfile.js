@@ -13,7 +13,6 @@ gulpIf = require('gulp-if'),
 cssnano = require('gulp-cssnano'),
 imagemin = require('gulp-imagemin'),
 runSequence = require('run-sequence'),
-mainBowerFiles = require('main-bower-files'),
 bower = require('gulp-bower'),
 regexRename = require('gulp-regex-rename');
 
