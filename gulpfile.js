@@ -215,7 +215,8 @@ gulp.task('jsBower', function() {
   //plugins
   gulp.src([
     config.bowerDir+'/owl.carousel/dist/owl.carousel.js',
-    config.bowerDir+'/owl.carousel/dist/owl.carousel.min.js'
+    config.bowerDir+'/owl.carousel/dist/owl.carousel.min.js',
+    config.bowerDir+'/bootstrap-select/dist/js/*.js'
   ])
   .pipe(gulp.dest(config.srcPath+'js/plugins/'));
 });
@@ -240,6 +241,14 @@ gulp.task('scssBower', function() {
   ])
   .pipe(gulp.dest(config.srcPath+'sass/plugins/icheck/'));
 
+  //bootstrap-select
+  gulp.src([
+    config.bowerDir+'/bootstrap-select/sass/**/*.scss'
+  ])
+  //.pipe(gulpif(condition, rename({prefix: '_', extname: '.scss'}) ))
+  .pipe(rename({prefix: '_' }))
+  .pipe(gulp.dest(config.srcPath+'sass/plugins/bootstrap-select/'));
+
   //Bootstrap
   //-> scss
   gulp.src([
@@ -247,7 +256,7 @@ gulp.task('scssBower', function() {
   ])
   .pipe(gulp.dest(config.srcPath+'sass/'));
   //-> fonts
-  gulp.img([
+  gulp.src([
     config.bowerDir+'/bootstrap-sass/assets/fonts/**/*.*'
   ])
   .pipe(gulp.dest(config.srcPath+'fonts/'));

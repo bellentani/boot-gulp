@@ -1,4 +1,3 @@
-@import "bourbon";
 @import "project/inc";
 
 body {
@@ -22,11 +21,9 @@ body {
 }
 .teste {
   color: white;
-  @include linear-gradient(to top, red, orange);
 }
 section {
   color: blue;
-  font-size: golden-ratio(14px,  1);
 }
 .jumbotron {
   color: white;
