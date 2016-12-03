@@ -210,13 +210,14 @@ gulp.task('jsBower', function() {
     config.bowerDir+'/isMobile/isMobile.min.js',
     config.bowerDir+'/bootstrap-sass/assets/javascripts/**/*.*'
   ])
-  .pipe(gulp.dest(config.srcPath+'js/vendors/'));
+  .pipe(gulp.dest(config.srcPath+'js/vendor/'));
 
   //plugins
   gulp.src([
     config.bowerDir+'/owl.carousel/dist/owl.carousel.js',
     config.bowerDir+'/owl.carousel/dist/owl.carousel.min.js',
-    config.bowerDir+'/bootstrap-select/dist/js/*.js'
+    config.bowerDir+'/bootstrap-select/dist/js/*.js',
+    config.bowerDir+'/iCheck/*.js'
   ])
   .pipe(gulp.dest(config.srcPath+'js/plugins/'));
 });
