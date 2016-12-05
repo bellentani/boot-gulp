@@ -209,7 +209,7 @@ gulp.task('jsBower', function() {
     config.bowerDir+'/isMobile/isMobile.min.js',
     config.bowerDir+'/bootstrap-sass/assets/javascripts/**/*.*',
     config.bowerDir+'/underscore/underscore.js',
-    config.bowerDir+'/underscore/underscore.min.js'
+    config.bowerDir+'/underscore/underscore.min.js',
     config.bowerDir+'/backbone/backbone.js',
     config.bowerDir+'/backbone/backbone.min.js'
   ])
@@ -266,7 +266,7 @@ gulp.task('scssBower', function() {
   .pipe(gulp.dest(config.srcPath+'fonts/'));
 });
 
-gulp.task('bowerBuild', function (callback) {
+gulp.task('init', function (callback) {
   runSequence('clean:dist',
     ['bowerInit', 'jsBower', 'scssBower'],
     callback
