@@ -207,7 +207,11 @@ gulp.task('jsBower', function() {
     config.bowerDir+'/jquery/dist/jquery.min.js',
     config.bowerDir+'/isMobile/isMobile.js',
     config.bowerDir+'/isMobile/isMobile.min.js',
-    config.bowerDir+'/bootstrap-sass/assets/javascripts/**/*.*'
+    config.bowerDir+'/bootstrap-sass/assets/javascripts/**/*.*',
+    config.bowerDir+'/underscore/underscore.js',
+    config.bowerDir+'/underscore/underscore.min.js'
+    config.bowerDir+'/backbone/backbone.js',
+    config.bowerDir+'/backbone/backbone.min.js'
   ])
   .pipe(gulp.dest(config.srcPath+'js/vendor/'));
 
